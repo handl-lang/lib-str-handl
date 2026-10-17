@@ -79,10 +79,29 @@ if [ "${#tests[@]}" -gt 0 ]; then
   # `--jobs 1` inside each file: these suites can share one fixture process,
   # so running a file's cases concurrently makes them fight over it.
   echo "== hnl test (per file; in-file jobs: 1) =="
+  failed_files=0
   for t in "${tests[@]}"; do
     echo "-- $t"
-    "$HNL" test --jobs 1 "$t"
+    if out=$("$HNL" test --jobs 1 "$t" 2>&1); then
+      printf '%s\n' "$out" | tail -2
+      continue
+    fi
+    printf '%s\n' "$out"
+    # A package repo ships no host module chain, so cases that reach a native
+    # it does not provide (`uchar.*`, `unorm2.*`, …) fail with
+    # `call_host: function '<name>' not found`. Those are host-dependent by
+    # construction: report them, but do not fail the gate on them alone.
+    real=$(printf '%s\n' "$out" | grep '^FAIL' | grep -vc 'call_host: function ' || true)
+    if [ "${real:-0}" -eq 0 ]; then
+      echo "   (all failures are missing host natives — not counted)"
+    else
+      failed_files=$((failed_files + 1))
+    fi
   done
+  if [ "$failed_files" -ne 0 ]; then
+    echo "hnl gate FAILED: $failed_files test file(s) with real failures." >&2
+    exit 1
+  fi
 fi
 
 echo
