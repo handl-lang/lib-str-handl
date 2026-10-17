@@ -7,7 +7,7 @@
 #![allow(clippy::type_complexity)]
 
 /// The aggregator index (`str` re-exporting every arrow).
-pub const STR_HANDL_HNL: &str = include_str!("str-handl.hnl");
+pub const STR_HANDL_HNL: &str = include_str!("index.hnl");
 
 /// The record field names exposed by `str-handl.hnl`.
 pub const STR_HANDL_FUNCS: &[&str] = &[

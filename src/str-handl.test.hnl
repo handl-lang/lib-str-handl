@@ -1,4 +1,4 @@
-from "./str-handl" import * as str
+from "./index" import * as str
 
 test_str_handl_upper := assert str.upper("a") = "A"
 
