@@ -15,21 +15,59 @@ if [ ! -x "$HNL" ]; then
   exit 1
 fi
 
-# Dependencies, when declared, are named in `pkg.hnl` by git ref
-# (`{ deps: { math: "branch:main" } }`). The tools do not resolve them yet —
-# this prints what the package expects so a missing wiring is visible.
-if [ -f pkg.hnl ]; then
-  echo "pkg.hnl: $(tr -d '\n' < pkg.hnl)"
+# The corpus is mixed-dialect: canonical `.hnl` and arrow/contract `.hnl`
+# (`~>`, `cap`/`op`/`handl`/`tag` declarations, a leading `axiom`). The
+# canonical tools cannot parse the arrow dialect, so mirror
+# `scripts/dogfood-gate.sh`'s detector and gate only the canonical files.
+is_canonical() {
+  awk '
+  function trim(s) { gsub(/^[[:space:]]+|[[:space:]]+$/, "", s); return s }
+  function strip_comment(s) { gsub(/--.*$/, "", s); return trim(s) }
+  function top_level(s) {
+    if (s ~ /^[[:space:]]*$/) return ""
+    if (s ~ /^[[:space:]]/) return ""
+    return strip_comment(s)
+  }
+  BEGIN { first=1; arrow=0 }
+  {
+    tl = top_level($0)
+    if (first && tl != "") {
+      if (tl ~ /^axiom /) { exit 1 }
+      first = 0
+    }
+    if (tl ~ /^(cap|op|handl|tag) /) { arrow = 1 }
+    code = strip_comment($0)
+    if (code != "") {
+      if (index(code, "|||") || code ~ /(^|[^a-zA-Z0-9_.])(arr|first|choice|loop|comp|app)\(/)
+        { arrow = 1 }
+      if (code ~ /(^|[^a-zA-Z0-9_.])~>/) { arrow = 1 }
+      if (code ~ /(^|[^a-zA-Z0-9_.])rec[[:space:]]*\{/) { arrow = 1 }
+    }
+  }
+  END { exit (arrow ? 1 : 0) }
+  ' "$1"
+}
+
+sources=()
+tests=()
+skipped=0
+while IFS= read -r f; do
+  if is_canonical "$f"; then
+    case "$f" in
+      *.test.hnl) tests+=("$f") ;;
+      *) sources+=("$f") ;;
+    esac
+  else
+    skipped=$((skipped + 1))
+  fi
+done < <(find "$SRC_DIR" -name '*.hnl' | sort)
+
+if [ "${#sources[@]}" -eq 0 ] && [ "${#tests[@]}" -eq 0 ]; then
+  echo "only non-canonical (arrow/contract) sources under $SRC_DIR/ — gate skipped"
+  exit 0
 fi
 
-mapfile -t sources < <(find "$SRC_DIR" -name '*.hnl' ! -name '*.test.hnl' | sort)
-mapfile -t tests < <(find "$SRC_DIR" -name '*.test.hnl' | sort)
-if [ "${#sources[@]}" -eq 0 ]; then
-  echo "error: no .hnl sources under $SRC_DIR/" >&2
-  exit 1
-fi
-
-echo "== hnl typecheck (${#sources[@]} sources, ${#tests[@]} test files) =="
+echo "== hnl typecheck (${#sources[@]} sources, ${#tests[@]} test files, ${skipped} dialect skipped) =="
 "$HNL" typecheck "${sources[@]}" ${tests[@]+"${tests[@]}"}
 
 echo
