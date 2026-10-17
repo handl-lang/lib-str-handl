@@ -1,0 +1,12 @@
+[package]
+name = "handl-lib-str-handl"
+version = "0.1.0"
+edition = "2024"
+description = "The `str` library implemented in pure handl over the `char` floor."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/handl-lang/lib-str-handl"
+
+# Sources only: the `.hnl` files under `src/` are exported as consts via
+# `include_str!`. No dependencies — `str-handl` reaches `char` through the
+# module chain at runtime.
+[dependencies]
