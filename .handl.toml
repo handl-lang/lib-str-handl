@@ -1,0 +1,5 @@
+[dependencies]
+str = { path = "../lib-str/src" }
+
+# own package
+str-handl = { path = "src" }
