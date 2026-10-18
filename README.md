@@ -21,5 +21,5 @@ The `.hnl` sources are not covered by `cargo`; `hnl typecheck` / `lint` /
 `test` is their gate, run in CI and available locally:
 
 ```bash
-HNL=../cli/target/debug/hnl scripts/hnl-gate.sh
+HNL=../host-cli/target/debug/hnl scripts/hnl-gate.sh
 ```
