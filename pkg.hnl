@@ -1,3 +1,3 @@
 -- lib-str-handl: modules this package provides (entry defaults to
 -- src/index.hnl; N modules resolve to src/<name>/index.hnl).
-{ modules: ["str-handl"] }
+{ deps: { str: "branch:main" }, modules: ["str-handl"] }
