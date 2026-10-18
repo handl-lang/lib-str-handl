@@ -1,0 +1,21 @@
+name: handl-lib-str-handl
+path: Cargo.toml
+purpose: The `str` library implemented in pure handl over the `char` floor.
+api:
+- name: handl-lib-str-handl
+  kind: module
+  file: Cargo.toml
+  line: 1
+  module: handl-lib-str-handl
+deps: []
+notes: ''
+verify:
+- Cargo.toml
+provenance:
+  files:
+  - Cargo.toml
+  hashes:
+  - e0799a34dcd99b5ea52d5933ace018c3f32b5a5c
+  commit_sha: 1cd296b6d79bdc478f42b40143d767576e525d75
+  generated_at: '1792281230'
+  generator: kuda-template/0.1.0

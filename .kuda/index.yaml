@@ -1,0 +1,19 @@
+name: lib-str-handl
+root: /home/luis/GitHub/handl-lang/lib-str-handl
+purpose: ''
+modules:
+- handl-lib-str-handl
+- lib-str-handl
+commands:
+- cargo check
+- cargo test --workspace
+provenance:
+  files:
+  - Cargo.toml
+  - src/lib.rs
+  hashes:
+  - e0799a34dcd99b5ea52d5933ace018c3f32b5a5c
+  - 4407bc0adf0784e0134cd58ed3374baa59a91317
+  commit_sha: 1cd296b6d79bdc478f42b40143d767576e525d75
+  generated_at: '1792281230'
+  generator: kuda/0.1.0

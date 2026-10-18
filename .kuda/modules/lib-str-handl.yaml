@@ -1,0 +1,37 @@
+name: lib-str-handl
+path: src/lib.rs
+purpose: lib-str-handl
+api:
+- name: STR_HANDL_HNL
+  kind: const
+  file: src/lib.rs
+  line: 10
+  module: lib-str-handl
+- name: STR_HANDL_FUNCS
+  kind: const
+  file: src/lib.rs
+  line: 13
+  module: lib-str-handl
+- name: STR_HANDL_SOURCES
+  kind: const
+  file: src/lib.rs
+  line: 63
+  module: lib-str-handl
+deps: []
+notes: ''
+verify:
+- src/lib.rs
+- src/lib.rs
+- src/lib.rs
+provenance:
+  files:
+  - src/lib.rs
+  - src/lib.rs
+  - src/lib.rs
+  hashes:
+  - 4407bc0adf0784e0134cd58ed3374baa59a91317
+  - 4407bc0adf0784e0134cd58ed3374baa59a91317
+  - 4407bc0adf0784e0134cd58ed3374baa59a91317
+  commit_sha: 1cd296b6d79bdc478f42b40143d767576e525d75
+  generated_at: '1792281230'
+  generator: kuda-template/0.1.0
