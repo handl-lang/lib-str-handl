@@ -23,3 +23,13 @@ The `.hnl` sources are not covered by `cargo`; `hnl typecheck` / `lint` /
 ```bash
 HNL=../host-cli/target/debug/hnl scripts/hnl-gate.sh
 ```
+
+## Documentation
+
+Published site (Diátaxis): <https://handl-lang.github.io/docs/lib-str-handl/>
+
+- [Reference](https://handl-lang.github.io/docs/lib-str-handl/reference/) — public API surface
+- [How-to](https://handl-lang.github.io/docs/lib-str-handl/how-to/) — task recipes
+- [Explanation](https://handl-lang.github.io/docs/lib-str-handl/explanation/) — design and rationale
+
+Decision records live on the `project` branch under `project/adrs/`.
