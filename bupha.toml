@@ -1,0 +1,18 @@
+# bupha.toml — committed CI manifest for handl-lang/lib-str-handl.
+#
+# Runner is this repo's ci.sh (scripts/hnl-gate.sh: typecheck + lint + test over
+# the package's .hnl sources). Merge the [[repos]] entry into the shared watcher
+# (~/.config/bupha/bupha.toml) or run: bupha watch --config bupha.toml
+
+[[repos]]
+name = "handl-lang/lib-str-handl"
+dir = "/home/luis/GitHub/handl-lang/lib-str-handl"
+branch = "refs/heads/main"
+  [repos.runner]
+  kind = "script"
+  cmd = "bash ci.sh"
+  cancel_running = true
+
+[status]
+kind = "github"
+context = "ci/bupha"
