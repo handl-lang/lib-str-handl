@@ -5,6 +5,8 @@ edition = "2024"
 description = "The `str` library implemented in pure handl over the `char` floor."
 license = "MIT"
 repository = "https://github.com/handl-lang/lib-str-handl"
+homepage = "https://github.com/handl-lang/lib-str-handl"
+readme = "README.md"
 
 # Sources only: the `.hnl` files under `src/` are exported as consts via
 # `include_str!`. No dependencies — `str-handl` reaches `char` through the
