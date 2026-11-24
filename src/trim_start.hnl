@@ -16,8 +16,8 @@ from "char" import * as char
 --- length and made every `trim_start` on a source line cost ~1ms per
 --- character.
 export trim_start := (s) ~> do {
-  n :: char.length(s)
-  i :: while { s: s, i: 0, n: n } {
+  n := char.length(s)
+  i := while { s: s, i: 0, n: n } {
     (st) ~> if st.i >= st.n {
       { out: st.i }
     } else if char.is_whitespace(char.at(st.s, st.i)) {

@@ -14,8 +14,8 @@ from "char" import * as char
 --- three list rebuilds (`drop_while`, `rev`, `drop_while`) whose per-element
 --- prepends are quadratic — a 1000-char `trim` cost ~138ms.
 export trim := (s) ~> do {
-  n :: char.length(s)
-  i :: while { s: s, i: 0, n: n } {
+  n := char.length(s)
+  i := while { s: s, i: 0, n: n } {
     (st) ~> if st.i >= st.n {
       { out: st.i }
     } else if char.is_whitespace(char.at(st.s, st.i)) {
@@ -24,7 +24,7 @@ export trim := (s) ~> do {
       { out: st.i }
     }
   }
-  j :: while { s: s, j: n, lo: i } {
+  j := while { s: s, j: n, lo: i } {
     (st) ~> if st.j <= st.lo {
       { out: st.lo }
     } else if char.is_whitespace(char.at(st.s, st.j - 1)) {
