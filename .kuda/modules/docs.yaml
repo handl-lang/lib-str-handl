@@ -1,0 +1,45 @@
+name: docs
+path: docs/site/explanation/index.md
+purpose: documentation corpus — pages as records, backticked refs as edges
+api:
+- name: Explanation
+  kind: record
+  file: docs/site/explanation/index.md
+  line: 1
+  module: docs
+- name: How-to guides
+  kind: record
+  file: docs/site/how-to/index.md
+  line: 1
+  module: docs
+- name: Reference
+  kind: record
+  file: docs/site/reference/index.md
+  line: 1
+  module: docs
+- name: lib-str-handl
+  kind: record
+  file: docs/site/index.md
+  line: 1
+  module: docs
+deps: []
+notes: ''
+verify:
+- docs/site/explanation/index.md
+- docs/site/how-to/index.md
+- docs/site/index.md
+- docs/site/reference/index.md
+provenance:
+  files:
+  - docs/site/explanation/index.md
+  - docs/site/how-to/index.md
+  - docs/site/index.md
+  - docs/site/reference/index.md
+  hashes:
+  - 3d6bb5ae3cd97fb190cc457c84cce9ab06f3effd
+  - 1fc6bfbd318aaab312403e68a02bb260ef48ffeb
+  - 54a88467cc696d3bc29d73a30b1839b60cfea6b6
+  - 334afde48c9bec7a518323c04e78bfcdb600a51d
+  commit_sha: 36320893c66c03829a0227becaa2b7a5441b5d3a
+  generated_at: '1795484421'
+  generator: kuda-template/0.1.4

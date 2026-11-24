@@ -1,19 +1,16 @@
 name: lib-str-handl
 root: /home/luis/GitHub/handl-lang/lib-str-handl
-purpose: ''
+purpose: The str library implemented in pure handl over the char floor.
 modules:
-- handl-lib-str-handl
-- lib-str-handl
-commands:
-- cargo check
-- cargo test --workspace
+- docs
+commands: []
+tree_digest: 80b2983d6a4d93c17809d69bdca3c3ac56ab2e12
+files_total: 4
 provenance:
   files:
-  - Cargo.toml
-  - src/lib.rs
+  - README.md
   hashes:
-  - e0799a34dcd99b5ea52d5933ace018c3f32b5a5c
-  - 4407bc0adf0784e0134cd58ed3374baa59a91317
-  commit_sha: 1cd296b6d79bdc478f42b40143d767576e525d75
-  generated_at: '1792281230'
+  - 3aeee9db995a9c3fc18f42a94f65cfd2328afcf4
+  commit_sha: 36320893c66c03829a0227becaa2b7a5441b5d3a
+  generated_at: '1795484421'
   generator: kuda/0.1.0
