@@ -11,7 +11,7 @@ the reference backend of the `str` contract (`lib-str`).
 | `src/internal/` | shared internals |
 | `pkg.hnl` | manifest — `modules: ["str-handl"]`, dep `str` |
 | `docs/` | site docs (`site.yaml` + `site/`) |
-| `scripts/hnl-gate.sh`, `ci.sh` | the gate / bupha entry |
+| `scripts/hnl-gate.sh`, `workflows/gate.yaml` | the gate / bupha entry |
 
 ## Contract
 
