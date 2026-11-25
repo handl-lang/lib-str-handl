@@ -14,7 +14,7 @@ consumed, and the crate shim is deleted).
 src/                 the .hnl sources (one file per arrow + internal/)
 pkg.hnl              package manifest — modules, deps, license
 scripts/hnl-gate.sh  the gate
-ci.sh                bupha entry
+workflows/gate.yaml                bupha entry (handl-gates)
 ```
 
 ## Gate
